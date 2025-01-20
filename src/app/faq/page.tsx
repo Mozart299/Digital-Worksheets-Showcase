@@ -1,6 +1,12 @@
+"use client"
+
+import { motion } from "framer-motion"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { useAnimationVariants } from "@/hooks/use-animation-variants"
 
 export default function FAQ() {
+  const { containerVariants, itemVariants } = useAnimationVariants()
+
   const faqs = [
     {
       question: "How do I purchase your digital worksheets?",
@@ -30,17 +36,32 @@ export default function FAQ() {
   ]
 
   return (
-    <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 mt-10">Frequently Asked Questions</h1>
-      <Accordion type="single" collapsible className="w-full">
-        {faqs.map((faq, index) => (
-          <AccordionItem value={`item-${index}`} key={index}>
-            <AccordionTrigger>{faq.question}</AccordionTrigger>
-            <AccordionContent>{faq.answer}</AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
-    </div>
+    <motion.div
+      className="container mx-auto px-4 sm:px-6 lg:px-8 py-12"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-center" variants={itemVariants}>
+        Frequently Asked Questions
+      </motion.h1>
+      <motion.div className="max-w-3xl mx-auto" variants={containerVariants}>
+        <Accordion type="single" collapsible className="w-full space-y-4">
+          {faqs.map((faq, index) => (
+            <motion.div key={index} variants={itemVariants}>
+              <AccordionItem value={`item-${index}`} className="border rounded-lg overflow-hidden">
+                <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 transition-colors duration-200">
+                  <h2 className="text-left text-lg font-semibold">{faq.question}</h2>
+                </AccordionTrigger>
+                <AccordionContent className="px-6 py-4 bg-gray-50">
+                  <p className="text-gray-700">{faq.answer}</p>
+                </AccordionContent>
+              </AccordionItem>
+            </motion.div>
+          ))}
+        </Accordion>
+      </motion.div>
+    </motion.div>
   )
 }
 
