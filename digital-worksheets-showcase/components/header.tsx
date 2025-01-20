@@ -41,7 +41,7 @@ export default function Header() {
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center relative">
         <Link href="/" className="text-xl font-bold">
           <Image
-            src=""
+            src="/logo.png"
             alt="Logo"
             width={100}
             height={100}
