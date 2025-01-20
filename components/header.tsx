@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close mobile menu when screen size changes to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
@@ -15,19 +14,14 @@ export default function Header() {
       }
     };
 
-    // Add event listener
     window.addEventListener('resize', handleResize);
-
-    // Cleanup event listener
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Close menu when a link is clicked
   const handleLinkClick = () => {
     setMenuOpen(false);
   };
 
-  // Prevent scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
@@ -36,20 +30,37 @@ export default function Header() {
     }
   }, [menuOpen]);
 
+  const navigationItems = [
+    { href: "/", label: "Home" },
+    { 
+      href: "/worksheets", 
+      label: "Worksheets",
+      subItems: [
+        { href: "/worksheets/music", label: "Music Mastery" },
+        { href: "/worksheets/reading-writing", label: "Reading & Writing" },
+        { href: "/worksheets/math", label: "Math Magic" }
+      ]
+    },
+    { href: "/about", label: "Our Approach" },
+    { href: "/age-groups", label: "Age Groups" },
+    { href: "/samples", label: "Free Samples" },
+    { href: "/shop", label: "Shop" }
+  ];
+
   return (
     <header className="bg-primary text-primary-foreground fixed top-0 left-0 w-full z-50">
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center relative">
         <Link href="/" className="text-xl font-bold">
           <Image
             src="/logo.png"
-            alt="Logo"
+            alt="Borderless Craft"
             width={100}
-            height={100}
+            height={40}
             priority
+            className="object-contain"
           />
         </Link>
 
-        {/* Mobile Menu Toggle Button */}
         <button
           className="lg:hidden text-white focus:outline-none z-60"
           onClick={() => setMenuOpen(!menuOpen)}
@@ -71,7 +82,6 @@ export default function Header() {
           </svg>
         </button>
 
-        {/* Navigation Menu */}
         <div
           className={`
             ${menuOpen ? 'translate-x-0' : 'translate-x-full'}
@@ -98,22 +108,30 @@ export default function Header() {
           `}
         >
           <ul className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 items-center">
-            {[
-              { href: "/", label: "Home" },
-              { href: "/about", label: "About" },
-              { href: "/products", label: "Products" },
-              { href: "/samples", label: "Samples" },
-              { href: "/faq", label: "FAQ" },
-              { href: "/contact", label: "Contact" },
-            ].map((link) => (
-              <li key={link.href} className="w-full lg:w-auto text-center">
+            {navigationItems.map((item) => (
+              <li key={item.href} className="w-full lg:w-auto text-center group relative">
                 <Link
-                  href={link.href}
+                  href={item.href}
                   className="block py-3 lg:py-2 hover:underline"
                   onClick={handleLinkClick}
                 >
-                  {link.label}
+                  {item.label}
                 </Link>
+                {item.subItems && (
+                  <ul className="hidden lg:group-hover:block absolute left-0 mt-2 w-48 bg-primary shadow-lg rounded-md py-2">
+                    {item.subItems.map((subItem) => (
+                      <li key={subItem.href}>
+                        <Link
+                          href={subItem.href}
+                          className="block px-4 py-2 hover:bg-primary-foreground/10"
+                          onClick={handleLinkClick}
+                        >
+                          {subItem.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>

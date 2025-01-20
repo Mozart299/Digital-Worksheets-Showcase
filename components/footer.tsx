@@ -4,7 +4,7 @@ export default function Footer() {
     return (
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 text-center">
-          <p>&copy; {new Date().getFullYear()} Digital Worksheets Showcase. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Borderless Craft. All rights reserved.</p>
           <div className="mt-4">
             <Link
               href="/privacy-policy"

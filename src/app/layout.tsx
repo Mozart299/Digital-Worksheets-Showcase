@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Digital Worksheets Showcase",
+  title: "Borderless Craft",
   description: "High-quality digital worksheets for educators",
 };
 
