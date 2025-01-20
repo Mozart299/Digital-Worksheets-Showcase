@@ -10,7 +10,7 @@ export default function Samples() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold mb-6">Sample Worksheets</h1>
+      <h1 className="text-3xl font-bold mb-6 mt-10">Sample Worksheets</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {samples.map((sample) => (
           <div key={sample.id} className="border rounded-lg p-4">

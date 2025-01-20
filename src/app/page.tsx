@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 export default function Home() {
   return (
     <div className="flex flex-col items-center text-center">
-      <h1 className="text-4xl font-bold mb-6">Welcome to Digital Worksheets Showcase</h1>
+      <h1 className="text-4xl font-bold mb-6 mt-10">Welcome to Digital Worksheets Showcase</h1>
       <p className="text-xl mb-8 max-w-2xl">
         Discover high-quality digital worksheets designed to enhance learning experiences. Perfect for educators looking
         for engaging and effective teaching materials.

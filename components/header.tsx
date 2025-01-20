@@ -102,6 +102,7 @@ export default function Header() {
               { href: "/", label: "Home" },
               { href: "/about", label: "About" },
               { href: "/products", label: "Products" },
+              { href: "/samples", label: "Samples" },
               { href: "/faq", label: "FAQ" },
               { href: "/contact", label: "Contact" },
             ].map((link) => (

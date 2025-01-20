@@ -31,7 +31,7 @@ export default function FAQ() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">Frequently Asked Questions</h1>
+      <h1 className="text-3xl font-bold mb-6 mt-10">Frequently Asked Questions</h1>
       <Accordion type="single" collapsible className="w-full">
         {faqs.map((faq, index) => (
           <AccordionItem value={`item-${index}`} key={index}>

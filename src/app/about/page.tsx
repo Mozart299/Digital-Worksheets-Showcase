@@ -1,7 +1,7 @@
 export default function About() {
     return (
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">About Us</h1>
+        <h1 className="text-3xl font-bold mb-6 mt-10">About Us</h1>
         <p className="mb-4">
           Welcome to Digital Worksheets Showcase! We are passionate educators dedicated to creating high-quality, engaging
           digital worksheets for teachers and students around the world.
