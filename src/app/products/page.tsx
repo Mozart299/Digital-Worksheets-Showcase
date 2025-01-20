@@ -1,7 +1,14 @@
+"use client"
+
 import Link from "next/link"
+import Image from "next/image"
+import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
+import { useAnimationVariants } from "@/hooks/use-animation-variants"
 
 export default function Products() {
+  const { containerVariants, itemVariants } = useAnimationVariants()
+
   const products = [
     {
       id: 1,
@@ -27,34 +34,59 @@ export default function Products() {
   ]
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6 mt-10">Our Products</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <motion.div
+      className="container mx-auto px-4 sm:px-6 lg:px-8 py-12"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-8 text-center" variants={itemVariants}>
+        Our Products
+      </motion.h1>
+      <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" variants={containerVariants}>
         {products.map((product) => (
-          <div key={product.id} className="border rounded-lg p-4">
-            <img
-              src={`/placeholder.svg?height=200&width=200`}
-              alt={product.title}
-              className="w-full h-40 object-cover mb-4"
-            />
+          <motion.div
+            key={product.id}
+            className="border rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow duration-300"
+            variants={itemVariants}
+          >
+            <div className="relative w-full h-48 mb-4">
+              <Image
+                src={`/placeholder.svg?height=200&width=200`}
+                alt={product.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-md"
+              />
+            </div>
             <h2 className="text-xl font-semibold mb-2">{product.title}</h2>
             <p className="text-gray-600 mb-4">{product.description}</p>
-            <div className="flex justify-between">
-              <Link href="https://www.classful.com" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="sm">
+            <div className="flex flex-col sm:flex-row justify-between gap-2">
+              <Link
+                href="https://www.classful.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto"
+              >
+                <Button variant="outline" size="sm" className="w-full">
                   Buy on Classful
                 </Button>
               </Link>
-              <Link href="https://www.teacherspayteachers.com" target="_blank" rel="noopener noreferrer">
-                <Button variant="outline" size="sm">
+              <Link
+                href="https://www.teacherspayteachers.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto"
+              >
+                <Button variant="outline" size="sm" className="w-full">
                   Buy on TPT
                 </Button>
               </Link>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
