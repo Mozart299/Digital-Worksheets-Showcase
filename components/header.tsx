@@ -1,64 +1,58 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import Image from "next/image";
+import Link from "next/link"
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import { theme } from "@/lib/theme"
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setMenuOpen(false);
+        setMenuOpen(false)
       }
-    };
+    }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   const handleLinkClick = () => {
-    setMenuOpen(false);
-  };
+    setMenuOpen(false)
+  }
 
   useEffect(() => {
     if (menuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset"
     }
-  }, [menuOpen]);
+  }, [menuOpen])
 
   const navigationItems = [
     { href: "/", label: "Home" },
-    { 
-      href: "/worksheets", 
+    {
+      href: "/worksheets",
       label: "Worksheets",
       subItems: [
         { href: "/worksheets/music", label: "Music Mastery" },
         { href: "/worksheets/reading-writing", label: "Reading & Writing" },
-        { href: "/worksheets/math", label: "Math Magic" }
-      ]
+        { href: "/worksheets/math", label: "Math Magic" },
+      ],
     },
     { href: "/about", label: "Our Approach" },
     { href: "/age-groups", label: "Age Groups" },
     { href: "/samples", label: "Free Samples" },
-    { href: "/shop", label: "Shop" }
-  ];
+    { href: "/shop", label: "Shop" },
+  ]
 
   return (
-    <header className="bg-primary text-primary-foreground fixed top-0 left-0 w-full z-50">
+    <header className="fixed top-0 left-0 w-full z-50" style={{ background: theme.header.background }}>
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center relative">
         <Link href="/" className="text-xl font-bold">
-          <Image
-            src="/logo.png"
-            alt="Borderless Craft"
-            width={100}
-            height={40}
-            priority
-            className="object-contain"
-          />
+          <Image src="/logo.png" alt="Borderless Craft" width={100} height={40} priority className="object-contain" />
         </Link>
 
         <button
@@ -84,7 +78,7 @@ export default function Header() {
 
         <div
           className={`
-            ${menuOpen ? 'translate-x-0' : 'translate-x-full'}
+            ${menuOpen ? "translate-x-0" : "translate-x-full"}
             lg:translate-x-0 
             fixed 
             lg:static 
@@ -93,8 +87,6 @@ export default function Header() {
             w-full 
             h-full 
             lg:h-auto 
-            bg-primary 
-            lg:bg-transparent 
             transition-transform 
             duration-300 
             ease-in-out 
@@ -106,25 +98,50 @@ export default function Header() {
             justify-center 
             items-center
           `}
+          style={{
+            background: theme.header.background,
+            color: theme.header.text,
+          }}
         >
           <ul className="flex flex-col lg:flex-row space-y-6 lg:space-y-0 lg:space-x-6 items-center">
             {navigationItems.map((item) => (
               <li key={item.href} className="w-full lg:w-auto text-center group relative">
                 <Link
                   href={item.href}
-                  className="block py-3 lg:py-2 hover:underline"
+                  className="block py-3 lg:py-2 hover:underline transition-colors duration-200"
                   onClick={handleLinkClick}
+                  style={{
+                    color: theme.header.text,
+                    backgroundImage: "none",
+                    backgroundSize: "100% 2px",
+                    backgroundPosition: "0 100%",
+                    backgroundRepeat: "no-repeat",
+                    transition: "background-size 0.3s",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundImage = theme.gradients.primary
+                    e.currentTarget.style.backgroundSize = "100% 2px"
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundSize = "0% 2px"
+                  }}
                 >
                   {item.label}
                 </Link>
                 {item.subItems && (
-                  <ul className="hidden lg:group-hover:block absolute left-0 mt-2 w-48 bg-primary shadow-lg rounded-md py-2">
+                  <ul
+                    className="hidden lg:group-hover:block absolute left-0 mt-2 w-48 shadow-lg rounded-md py-2"
+                    style={{ background: theme.header.background }}
+                  >
                     {item.subItems.map((subItem) => (
                       <li key={subItem.href}>
                         <Link
                           href={subItem.href}
-                          className="block px-4 py-2 hover:bg-primary-foreground/10"
                           onClick={handleLinkClick}
+                          className="block px-4 py-2 transition-colors duration-200 hover:bg-theme-header-hoverBackground"
+                          style={{
+                            color: theme.header.text,
+                          }}
                         >
                           {subItem.label}
                         </Link>
@@ -138,5 +155,6 @@ export default function Header() {
         </div>
       </nav>
     </header>
-  );
+  )
 }
+
