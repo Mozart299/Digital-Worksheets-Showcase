@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { useAnimationVariants } from "@/hooks/use-animation-variants"
 import { Music, BookOpen, Calculator, Sparkles, Brain, Rocket } from "lucide-react"
 import { theme } from "@/lib/theme"
+import TypingEffect from "@/lib/utils/typing-effect"
 
 export default function Home() {
   const { containerVariants, itemVariants } = useAnimationVariants()
@@ -67,7 +68,7 @@ export default function Home() {
             style={{ backgroundImage: theme.gradients.primary }}
             variants={itemVariants}
           >
-            Welcome to Borderless Craft
+            <TypingEffect text="Welcome to Borderless Craft" />
           </motion.h1>
           <motion.p className="text-lg sm:text-xl mb-8 text-gray-700" variants={itemVariants}>
             Transform the way your child learns with our worksheets, designed to turn education into an adventure for
@@ -96,7 +97,7 @@ export default function Home() {
             style={{ backgroundImage: theme.gradients.primary }}
             variants={itemVariants}
           >
-            Our Learning Areas
+            <TypingEffect text="Our Learning Areas" />
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {subjects.map((subject) => (
@@ -127,7 +128,7 @@ export default function Home() {
             style={{ backgroundImage: theme.gradients.primary }}
             variants={itemVariants}
           >
-            Why Choose Borderless Craft?
+            <TypingEffect text="Why Choose Borderless Craft"/>
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {features.map((feature, index) => (
