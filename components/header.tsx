@@ -52,7 +52,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 w-full z-50" style={{ background: theme.header.background }}>
       <nav className="container mx-auto px-4 py-4 flex justify-between items-center relative">
         <Link href="/" className="text-xl font-bold">
-          <Image src="/logo.png" alt="Borderless Craft" width={100} height={40} priority className="object-contain" />
+          <Image src="/assets/borderlesscraft-logo.png" alt="Borderless Craft" width={100} height={40} priority className="object-contain" />
         </Link>
 
         <button
