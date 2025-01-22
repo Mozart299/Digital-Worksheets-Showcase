@@ -1,18 +1,17 @@
 import type { Metadata } from "next"
-import { Geist, Azeret_Mono as Geist_Mono } from "next/font/google"
+import { Nunito, Azeret_Mono } from "next/font/google"
 import "./globals.css"
 import Header from "../../components/header"
 import Footer from "../../components/footer"
-import { theme } from "@/lib/theme"
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const nunito = Nunito({
   subsets: ["latin"],
+  variable: "--font-nunito",
 })
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const azeretMono = Azeret_Mono({
   subsets: ["latin"],
+  variable: "--font-azeret-mono",
 })
 
 export const metadata: Metadata = {
@@ -28,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gradient-to-br from-[#F0F8FF] to-[#E6F3FF] overflow-x-hidden relative`}
+        className={`${nunito.variable} ${azeretMono.variable} font-sans antialiased min-h-screen bg-gradient-to-br from-[#F0F8FF] to-[#E6F3FF] overflow-x-hidden relative`}
       >
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#FF9933] rounded-full opacity-10 blur-3xl"></div>
