@@ -1,15 +1,25 @@
 "use client"
 
 import Link from "next/link"
-import { motion, LazyMotion, domAnimation } from "framer-motion"
+import { motion, LazyMotion, domAnimation, useScroll, useTransform } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { useAnimationVariants } from "@/hooks/use-animation-variants"
 import { Music, BookOpen, Calculator, Sparkles, Brain, Rocket } from "lucide-react"
 import { theme } from "@/lib/theme"
 import TypingEffect from "@/lib/utils/typing-effect"
+import { useRef } from "react"
 
 export default function Home() {
-  const { containerVariants, itemVariants } = useAnimationVariants()
+  const { containerVariants, itemVariants, fadeInVariants, scaleInVariants, slideInVariants, isMounted } =
+    useAnimationVariants()
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  })
+
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
 
   const subjects = [
     {
@@ -56,21 +66,24 @@ export default function Home() {
     },
   ]
 
+  if (!isMounted) return null
+
   return (
     <LazyMotion features={domAnimation}>
-      <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+      <motion.div initial="hidden" animate="visible" variants={containerVariants} ref={ref}>
         <motion.div
           className="w-full max-w-4xl mx-auto mb-16 p-8 rounded-2xl bg-white bg-opacity-80 backdrop-blur-lg shadow-xl"
-          variants={itemVariants}
+          variants={scaleInVariants}
+          style={{ opacity, scale }}
         >
           <motion.h1
             className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent"
             style={{ backgroundImage: theme.gradients.primary }}
-            variants={itemVariants}
+            variants={fadeInVariants}
           >
             <TypingEffect text="Welcome to Borderless Craft" />
           </motion.h1>
-          <motion.p className="text-lg sm:text-xl mb-8 text-gray-700" variants={itemVariants}>
+          <motion.p className="text-lg sm:text-xl mb-8 text-gray-700" variants={fadeInVariants}>
             Transform the way your child learns with our worksheets, designed to turn education into an adventure for
             children aged 4-10. Where education meets imagination.
           </motion.p>
@@ -95,18 +108,28 @@ export default function Home() {
           <motion.h2
             className="text-2xl sm:text-3xl font-semibold mb-8 bg-clip-text text-transparent"
             style={{ backgroundImage: theme.gradients.primary }}
-            variants={itemVariants}
+            variants={fadeInVariants}
           >
             <TypingEffect text="Our Learning Areas" />
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {subjects.map((subject) => (
+            {subjects.map((subject, index) => (
               <motion.div
                 key={subject.id}
                 className="bg-white bg-opacity-80 backdrop-blur-lg rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300 group"
-                variants={itemVariants}
+                variants={slideInVariants("up")}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.8 }}
+                custom={index}
               >
-                <div className="flex justify-center">{subject.icon}</div>
+                <motion.div
+                  className="flex justify-center"
+                  whileHover={{ scale: 1.2, rotate: 360 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                >
+                  {subject.icon}
+                </motion.div>
                 <h3 className="text-xl font-semibold mb-2">{subject.title}</h3>
                 <p className="text-sm text-gray-600 mb-4">{subject.description}</p>
                 <Link href={subject.href}>
@@ -126,18 +149,29 @@ export default function Home() {
           <motion.h2
             className="text-2xl sm:text-3xl font-semibold mb-8 bg-clip-text text-transparent"
             style={{ backgroundImage: theme.gradients.primary }}
-            variants={itemVariants}
+            variants={fadeInVariants}
           >
-            <TypingEffect text="Why Choose Borderless Craft"/>
+            <TypingEffect text="Why Choose Borderless Craft" />
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
                 className="bg-white bg-opacity-80 backdrop-blur-lg p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-                variants={itemVariants}
+                variants={scaleInVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.8 }}
+                custom={index}
+                whileHover={{ scale: 1.05 }}
               >
-                <div className="flex justify-center mb-4">{feature.icon}</div>
+                <motion.div
+                  className="flex justify-center mb-4"
+                  whileHover={{ scale: 1.2, rotate: 360 }}
+                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
+                >
+                  {feature.icon}
+                </motion.div>
                 <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
                 <p className="text-sm text-gray-600">{feature.description}</p>
               </motion.div>
