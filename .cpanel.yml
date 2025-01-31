@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bordoiiw/public_html/
+    - /bin/cp * $DEPLOYPATH
