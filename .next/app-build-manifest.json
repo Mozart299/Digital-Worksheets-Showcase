@@ -27,13 +27,6 @@
       "static/chunks/805-fa9b74b6d3541030.js",
       "static/chunks/app/about/page-98b2ec445f6df33a.js"
     ],
-    "/contact/page": [
-      "static/chunks/webpack-153cece6a873d511.js",
-      "static/chunks/4bd1b696-e9c17094c651d34b.js",
-      "static/chunks/517-52a134a855ac9fc1.js",
-      "static/chunks/main-app-825a94becb47ac19.js",
-      "static/chunks/app/contact/page-a91bca377c4ed14e.js"
-    ],
     "/faq/page": [
       "static/chunks/webpack-153cece6a873d511.js",
       "static/chunks/4bd1b696-e9c17094c651d34b.js",
@@ -43,16 +36,12 @@
       "static/chunks/345-7d0240e3eea44d82.js",
       "static/chunks/app/faq/page-b79a11001f7e9386.js"
     ],
-    "/products/page": [
+    "/contact/page": [
       "static/chunks/webpack-153cece6a873d511.js",
       "static/chunks/4bd1b696-e9c17094c651d34b.js",
       "static/chunks/517-52a134a855ac9fc1.js",
       "static/chunks/main-app-825a94becb47ac19.js",
-      "static/chunks/805-fa9b74b6d3541030.js",
-      "static/chunks/345-7d0240e3eea44d82.js",
-      "static/chunks/173-cf3f652d0e6d8dae.js",
-      "static/chunks/565-5a4f08055471d5b5.js",
-      "static/chunks/app/products/page-200285f05d75f7dc.js"
+      "static/chunks/app/contact/page-a91bca377c4ed14e.js"
     ],
     "/page": [
       "static/chunks/webpack-153cece6a873d511.js",
@@ -64,6 +53,17 @@
       "static/chunks/173-cf3f652d0e6d8dae.js",
       "static/chunks/557-0ecaca1ae68f8c53.js",
       "static/chunks/app/page-16fb558da6921a95.js"
+    ],
+    "/products/page": [
+      "static/chunks/webpack-153cece6a873d511.js",
+      "static/chunks/4bd1b696-e9c17094c651d34b.js",
+      "static/chunks/517-52a134a855ac9fc1.js",
+      "static/chunks/main-app-825a94becb47ac19.js",
+      "static/chunks/805-fa9b74b6d3541030.js",
+      "static/chunks/345-7d0240e3eea44d82.js",
+      "static/chunks/173-cf3f652d0e6d8dae.js",
+      "static/chunks/565-5a4f08055471d5b5.js",
+      "static/chunks/app/products/page-200285f05d75f7dc.js"
     ],
     "/samples/page": [
       "static/chunks/webpack-153cece6a873d511.js",

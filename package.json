@@ -2,7 +2,6 @@
   "name": "digital-worksheets-showcase",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "scripts": {
     "dev": "ts-node server.ts",
     "build": "next build && tsc -p tsconfig.server.json",
@@ -14,6 +13,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "digital-worksheets-showcase": "file:",
     "framer-motion": "^12.0.6",
     "lucide-react": "^0.473.0",
     "next": "15.1.5",
