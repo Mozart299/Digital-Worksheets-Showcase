@@ -1,13 +1,10 @@
 {
     "extends": "./tsconfig.json",
     "compilerOptions": {
-      "module": "CommonJS",
+      "module": "preserve",
       "outDir": "dist",
       "noEmit": false,
-      "jsx": "react",
-      "allowJs": true,
-      "strict": true
+      "jsx": "react"
     },
     "include": ["server.ts"]
   }
-  
