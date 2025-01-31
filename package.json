@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.ts",
     "build": "next build",
-    "start": "next start",
+    "start": "NODE_ENV=production node server.ts",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,6 +13,7 @@
     "@radix-ui/react-slot": "^1.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "digital-worksheets-showcase": "file:",
     "lucide-react": "^0.473.0",
     "motion": "^12.0.0",
     "next": "15.1.5",
